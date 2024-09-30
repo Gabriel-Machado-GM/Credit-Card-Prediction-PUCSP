@@ -1,0 +1,64 @@
+\documentclass{article}
+\usepackage{amsmath}
+\usepackage{amssymb}
+\usepackage{graphicx}
+\usepackage{hyperref}
+
+\title{Relatório: Regressão Logística}
+\author{Nome do Autor}
+\date{\today}
+
+\begin{document}
+
+\maketitle
+
+\begin{abstract}
+Este relatório explica a regressão logística de forma sintetizada e matematicamente rigorosa. Inclui a formulação matemática, a interpretação dos coeficientes e a avaliação do modelo.
+\end{abstract}
+
+\section{Introdução}
+A regressão logística é uma técnica estatística usada para modelar a probabilidade de um evento binário. É amplamente utilizada em estatística e aprendizado de máquina para classificação binária.
+
+\section{Formulação Matemática}
+A regressão logística modela a probabilidade de um evento \(Y\) ocorrer como uma função linear das variáveis preditoras \(X\).
+
+\subsection{Função Sigmoide}
+A função sigmoide é utilizada para mapear os valores da combinação linear para o intervalo \([0, 1]\):
+\[
+\sigma(z) = \frac{1}{1 + e^{-z}}
+\]
+
+\subsection{Modelo de Regressão Logística}
+O modelo de regressão logística pode ser escrito como:
+\[
+P(Y=1|X) = \sigma(\beta_0 + \beta_1 X_1 + \beta_2 X_2 + \cdots + \beta_p X_p)
+\]
+onde \( \beta_0, \beta_1, \ldots, \beta_p \) são os coeficientes do modelo.
+
+\subsection{Logito}
+O logito transforma a probabilidade em uma combinação linear das variáveis preditoras:
+\[
+\text{logit}(P) = \log\left(\frac{P}{1-P}\right) = \beta_0 + \beta_1 X_1 + \beta_2 X_2 + \cdots + \beta_p X_p
+\]
+
+\section{Interpretação dos Coeficientes}
+Os coeficientes da regressão logística representam a mudança no logito da probabilidade de \(Y\) para uma unidade de mudança na variável preditora.
+
+\section{Estimativa dos Parâmetros}
+Os parâmetros do modelo são estimados usando o método de máxima verossimilhança. A função de verossimilhança para \(n\) observações é:
+\[
+L(\beta) = \prod_{i=1}^n P(Y_i|X_i)^{Y_i} (1 - P(Y_i|X_i))^{1 - Y_i}
+\]
+
+\section{Avaliação do Modelo}
+A qualidade do modelo pode ser avaliada usando diversas métricas, como a AUC-ROC, precisão, revocação e F1-score.
+
+\section{Conclusão}
+A regressão logística é uma ferramenta poderosa para a classificação binária. Compreender a formulação matemática e a interpretação dos coeficientes é crucial para a aplicação eficaz deste método.
+
+\begin{thebibliography}{9}
+\bibitem{book1}
+Trevor Hastie, Robert Tibshirani, Jerome Friedman. \textit{The Elements of Statistical Learning}. Springer, 2009.
+\end{thebibliography}
+
+\end{document}
