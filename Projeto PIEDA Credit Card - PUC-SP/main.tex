@@ -2,7 +2,22 @@
 
 \usepackage{amsmath} 
 \usepackage{graphicx}
-  
+\usepackage{titlesec}
+\usepackage{hyperref}
+\usepackage{nameref}
+
+\titleformat{\chapter}[display]
+  {\normalfont\Large\bfseries}
+  {\chaptername\ \thechapter}
+  {10pt}
+  {\Large}
+
+\titleformat{\section}
+  {\normalfont\LARGE\bfseries}
+  {\thesection\hspace{1em}}
+  {1em}
+  {}
+ 
 \universidade   {Pontifícia Universidade Católica de São Paulo}
 \faculdade      {Faculdade de Estudos Interdisciplinares}
 \departamento   {Departamento de Ciência de Dados e Inteligência Artificial}
@@ -27,7 +42,7 @@
 
 \folharosto
 
-\sumario
+\tableofcontents
 
 \chapter{Introdução}
 
@@ -62,16 +77,25 @@ A inadimplência de crédito é um problema recorrente no setor financeiro e tem
 A regressão logística, técnica popularizada por David Cox, continua sendo uma ferramenta fundamental, mas tem sido complementada por técnicas mais avançadas de machine learning, como redes neurais e random forests, como explorado por Breiman (2001).
 
 \begin{quote}
-    "A modelagem de crédito é uma ferramenta essencial para as instituições financeiras, permitindo a avaliação do risco de crédito e a tomada de decisões mais assertivas."
+    "A modelagem de crédito é uma ferramenta essencial para as instituições financeiras, permitindo a avaliação do risco de crédito e a tomada de decisões mais assertivas." 
 \end{quote}
-\rightline{\cite{wilson_t_m}}
+\rightline{Wilson T.M.}
+
 
 \section{Metodologia}
 
 Nesta seção, detalhamos as etapas seguidas para a realização deste estudo, desde a coleta de dados até a avaliação do modelo de predição de inadimplência.
 
 \subsection{Coleta de Dados}
-Os dados utilizados neste estudo foram fornecidos pela [Nome da Instituição Financeira]. O conjunto de dados contém informações sobre [número] clientes, incluindo variáveis como:
+Os dados utilizados neste estudo foram baixados via Kaggle e gentilmente fornecidos pela University of California.
+
+Agradecimentos: Agradecemos à UCI Machine Learning Repository pela disponibilização do conjunto de dados original, que pode ser acessado em: \\
+\hypertarget{dataset_uci}{\url{https://archive.ics.uci.edu/ml/datasets/default+of+credit+card+clients}}
+
+
+Referência: Lichman, M. (2013). UCI Machine Learning Repository [\hypertarget{uci}{\url{http://archive.ics.uci.edu/ml}}]. Irvine, CA: University of California, School of Information and Computer Science.
+
+O conjunto de dados compreende informações de cerca de 30 mil clientes, incluindo variáveis como:
 
 \begin{itemize}
     \item Demográficas: idade, sexo, estado civil, escolaridade.
@@ -240,18 +264,18 @@ A Figura \ref{fig:grafico1} apresenta a distribuição da inadimplência por fai
 
 A análise da idade como fator de risco para inadimplência corrobora com estudos anteriores que apontam para a importância de considerar o perfil demográfico dos clientes na avaliação de crédito. Essa informação pode ser utilizada para desenvolver modelos de pontuação de crédito mais precisos e personalizados, auxiliando as instituições financeiras a tomar decisões de concessão de crédito de forma mais segura e eficiente.
 
-\section{Análise da Idade e Inadimplência}
+\section{Análise do Estado Civil e Inadimplência}
 
-A Figura \ref{fig:grafico2} apresenta a distribuição da inadimplência por faixa etária. Observa-se que a maior parte dos casos de inadimplência concentra-se em indivíduos com idade entre 20 e 30 anos. A partir dessa faixa etária, há uma tendência geral de diminuição da taxa de inadimplência, sugerindo que a experiência e estabilidade financeira podem influenciar positivamente o comportamento de pagamento. No entanto, é importante ressaltar que existem exceções a essa tendência, como a faixa dos 20 anos, que apresenta uma taxa de inadimplência relativamente alta. Essa variação pode ser explicada por diversos fatores, como nível de renda, educação, responsabilidades financeiras e acesso ao crédito.
+A Figura \ref{fig:grafico2} apresenta a distribuição da inadimplência por estado civil. Observa-se que a categoria "solteiro" apresenta a maior quantidade de casos de inadimplência, seguida pela categoria "casado". A categoria "outro" apresenta o menor número de casos, possivelmente devido a um tamanho amostral menor ou a características específicas dessa categoria que não são capturadas nesse gráfico.
 
 \begin{figure}[H]
     \centering
     \includegraphics[width=\textwidth]{grafico2.png}
-    \caption{Contagem de Default Payment por Idade}
+    \caption{Contagem de Default Payment por Estado Civil}
     \label{fig:grafico2}
 \end{figure}
 
-A análise da idade como fator de risco para inadimplência corrobora com estudos anteriores que apontam para a importância de considerar o perfil demográfico dos clientes na avaliação de crédito. Essa informação pode ser utilizada para desenvolver modelos de pontuação de crédito mais precisos e personalizados, auxiliando as instituições financeiras a tomar decisões de concessão de crédito de forma mais segura e eficiente.
+A análise do estado civil como fator de risco para inadimplência sugere que o vínculo matrimonial pode ser um fator associado a um comportamento de pagamento mais responsável. No entanto, é importante ressaltar que outros fatores, como nível de renda, educação e responsabilidades financeiras, também podem influenciar o comportamento de pagamento.
 
 \section{Análise da Escolaridade e Inadimplência}
 
@@ -266,11 +290,9 @@ A Figura \ref{fig:grafico3} apresenta a distribuição da inadimplência por ní
 
 A análise da escolaridade como fator de risco para inadimplência sugere que um nível de escolaridade mais elevado pode ser um fator associado a um comportamento de pagamento mais responsável. No entanto, é importante ressaltar que outros fatores, como nível de renda, idade, estado civil e responsabilidades financeiras, também podem influenciar o comportamento de pagamento.
 
-Essa análise pode ser útil para as instituições financeiras na avaliação de crédito, permitindo que considerem o nível de escolaridade como um dos fatores a serem levados em conta na tomada de decisão.
-
 \section{Análise do Sexo e Inadimplência}
 
-A Figura \ref{fig:grafico4} apresenta a distribuição da inadimplência por sexo. Observa-se que a categoria "mulher" apresenta a maior quantidade de casos de inadimplência, seguida pela categoria "homem".
+A Figura \ref{fig:grafico4} apresenta a distribuição da inadimplência por sexo. Observa-se que a categoria mulher apresenta a maior quantidade de casos de inadimplência, seguida pela categoria homem.
 
 \begin{figure}[H]
     \centering
@@ -281,18 +303,16 @@ A Figura \ref{fig:grafico4} apresenta a distribuição da inadimplência por sex
 
 A análise do sexo como fator de risco para inadimplência sugere que o sexo feminino pode estar associado a um comportamento de pagamento mais propenso à inadimplência. No entanto, é importante ressaltar que outros fatores, como nível de renda, idade, estado civil, escolaridade e responsabilidades financeiras, também podem influenciar o comportamento de pagamento.
 
-Essa análise pode ser útil para as instituições financeiras na avaliação de crédito, permitindo que considerem o sexo como um dos fatores a serem levados em conta na tomada de decisão.
-
 \chapter{Evolução e diferentes matrizes que obtemos de acordo com cada metodologia que aplicamos}
 
 \section{Tentativa 1: Realizando as previsões e obtendo os primeiros resultados}
 
-\subsection*{\centering\Large\textbf{Treinamento (Tentativa 1)}}
+\subsection*{\centering\large\textbf{Treinamento (Tentativa 1)}}
 
 \begin{figure}[H]
     \centering
     \includegraphics[width=\textwidth]{gráfico5.png}
-    \caption{\\ \texttt{'ConfusionMatrixDisplay.from\_predictions(y\_train\_true, y\_train\_pred).plot()'}}
+    \caption{Matriz de Confusão - Treino}
     \label{fig:grafico5}
 \end{figure}
 
@@ -300,28 +320,29 @@ A divisão dos dados em conjuntos de treinamento (23945 amostras) e teste (5987 
 
 Será?...
 
-A matriz de confusão gerada através do comando \texttt{'ConfusionMatrixDisplay.from\_predictions(y\_train\_true, y\_train\_pred).plot()'} indica um alto nível de acurácia do modelo de regressão logística, com um número significativo de predições corretas. No entanto, o desbalanceamento de classes nas classes positiva e negativa merece atenção. Apesar da alta acurácia geral, é crucial analisar outras métricas como precisão, recall e F1-score para avaliar o desempenho do modelo em relação a cada classe.
+A matriz de confusão gerada através do comando:\\ \texttt{'ConfusionMatrixDisplay.from\_predictions(y\_train\_true, y\_train\_pred).plot()'}\\indica um alto nível de acurácia do modelo de regressão logística, com um número significativo de predições corretas. No entanto, o desbalanceamento de classes nas classes positiva e negativa merece atenção. Apesar da alta acurácia geral, é crucial analisar outras métricas como precisão, recall e F1-score para avaliar o desempenho do modelo em relação a cada classe.
 
 A análise dos coeficientes do modelo pode revelar quais características dos dados têm maior impacto na probabilidade de ocorrência do evento de interesse. Essa informação é fundamental para a interpretação dos resultados e a tomada de decisões.
 
-\subsection*{\centering\Large\textbf{Teste (Tentativa 1)}}
+\subsection*{\centering\large\textbf{Teste (Tentativa 1)}}
 \begin{figure}[H]
     \centering
     \includegraphics[width=\textwidth]{grafico6.png}
-    \caption{\\ \texttt{'ConfusionMatrixDisplay.from\_predictions(y\_test\_true, y\_test\_pred).plot()'}}
+    \caption{Matriz de Confusão - Teste}
     \label{fig:grafico6}
     \centering
 \end{figure}
 
-A matriz de confusão, gerada através do comando \texttt{'ConfusionMatrixDisplay.from\_predictions(y\_test\_true, y\_test\_pred).plot()'}, também revela um desempenho satisfatório do modelo de regressão logística no conjunto de teste. Observa-se uma alta taxa de acertos, especialmente para a classe negativa. No entanto, o desbalanceamento de classes, com um número significativamente maior de amostras da classe negativa, pode influenciar a interpretação das métricas.
+A matriz de confusão, gerada através do comando: \\
+\texttt{'ConfusionMatrixDisplay.from\_predictions(y\_test\_true, y\_test\_pred).plot()'},\\também revela um desempenho satisfatório do modelo de regressão logística no conjunto de teste. Observa-se uma alta taxa de acertos, especialmente para a classe negativa. No entanto, o desbalanceamento de classes, com um número significativamente maior de amostras da classe negativa, pode influenciar a interpretação das métricas.
 
 A regressão logística mostrou-se uma ferramenta eficaz para este problema, apresentando um bom desempenho na classificação. No entanto, é fundamental realizar uma análise mais detalhada, considerando as limitações e as possibilidades de melhoria do modelo. Adicionalmente, a exploração de técnicas para lidar com o desbalanceamento de classes pode contribuir para um modelo ainda mais robusto.
 
-\section{Tentativa 2: Realizando novas previsões com ajustes: Análise dos Resultados com Ajuste de Threshold}
+\section*{\centering\large\textbf{Tentativa 2: Realizando novas previsões com ajustes: Análise dos Resultados com Ajuste de Threshold}}
 
 Com o ajuste de threshold em 0.33, foram feitas previsões para o modelo de Regressão Logística tanto no conjunto de treino quanto no de teste, focando na predição de inadimplência de cartões de crédito. Observando as matrizes de confusão, é possível tirar algumas conclusões importantes:
 
-\subsection*{\centering\Large\textbf{Treinamento (Tentativa 2)}}
+\subsection*{\centering\large\textbf{Treinamento (Tentativa 2)}}
 
 A matriz de confusão do conjunto de treino (Figura 1) mostra que, após o ajuste, o modelo atingiu uma acurácia de 80.8\%. A classe majoritária (clientes adimplentes) foi identificada com alta precisão (85\%), enquanto a classe minoritária (inadimplentes) teve uma precisão menor (59\%). A recall da classe inadimplente, no entanto, ficou em 43\%, o que indica que o modelo ainda tem dificuldades em identificar todos os clientes inadimplentes, algo comum em cenários de desbalanceamento.
 
@@ -332,7 +353,7 @@ A matriz de confusão do conjunto de treino (Figura 1) mostra que, após o ajust
     \centering
 \end{figure}
 
-\subsection*{\centering\Large\textbf{Teste (Tentativa 2)}}
+\subsection*{\centering\large\textbf{Teste (Tentativa 2)}}
 
 No conjunto de teste (Figura 2), a acurácia do modelo foi ligeiramente superior, atingindo 81.68\%. O comportamento geral se manteve: alta precisão para a classe adimplente (86\%) e menor precisão para a classe inadimplente (61\%). A recall dos inadimplentes foi de 47\%, indicando uma leve melhora em comparação ao conjunto de treino.
 
@@ -344,13 +365,15 @@ No conjunto de teste (Figura 2), a acurácia do modelo foi ligeiramente superior
 
 Dado que o modelo ainda enfrenta dificuldades em capturar todos os clientes inadimplentes, o próximo passo será aplicar técnicas de undersampling para lidar com o desbalanceamento dos dados. Isso ajudará a criar um equilíbrio melhor entre as classes, potencialmente melhorando a capacidade de detecção de inadimplentes e reduzindo o viés em favor da classe majoritária.
 
+\newpage
+
 \section{Tentativa 3: Undersampling}
 
 No experimento realizado, foi aplicada a técnica de \textit{undersampling} para balancear a base de dados referente à previsão de \textit{default payment next month}. Inicialmente, o conjunto de dados apresentava uma forte desproporção entre as classes, com uma contagem de 23.301 instâncias da classe 0 (pagamentos sem atraso) e 6.631 instâncias da classe 1 (pagamentos com atraso).
 
 Após o balanceamento via \textit{undersampling}, o modelo foi treinado usando uma regressão logística com 10.609 instâncias balanceadas, divididas igualmente entre as classes 0 e 1.
 
-\subsection*{\centering\Large\textbf{Treinamento (Tentativa 3)}}
+\subsection*{\centering\large\textbf{Treinamento (Tentativa 3)}}
 Abaixo está a matriz de confusão obtida após o treinamento do modelo utilizando \textit{undersampling}:
 
 \begin{figure}[H]
@@ -361,7 +384,7 @@ Abaixo está a matriz de confusão obtida após o treinamento do modelo utilizan
 
 A matriz de confusão do treino mostra que o modelo teve um bom desempenho em ambas as classes, mas ainda apresenta alguns erros de classificação. O número de falsos negativos (1.885) e falsos positivos (1.543) indica que o modelo precisa melhorar a capacidade de distinguir entre as duas classes, apesar do balanceamento dos dados.
 
-\subsection*{\centering\Large\textbf{Teste (Tentativa 3)}}
+\subsection*{\centering\large\textbf{Teste (Tentativa 3)}}
 Abaixo está a matriz de confusão obtida no conjunto de teste:
 
 \begin{figure}[H]
@@ -428,12 +451,120 @@ O modelo de regressão logística, ao utilizar \textit{undersampling}, obteve um
 
 No próximo teste com \textit{oversampling}, espera-se uma melhora nas métricas relacionadas à classe 1 (inadimplência), especialmente no recall, que atualmente está abaixo do desejável.
 
+\section{Oversampling}
+Neste experimento, foi aplicado \textit{oversampling} para balancear o conjunto de dados referente à previsão de \textit{default payment next month}, onde a classe majoritária (classe 0) possuía 23.301 instâncias e a classe minoritária (classe 1) tinha apenas 6.631 instâncias. Para compensar esse desbalanceamento, amostras adicionais da classe minoritária foram geradas, resultando em um conjunto de dados equilibrado.
 
+\subsection*{\centering\large\textbf{Matriz de Confusão - Treinamento}}
+A matriz de confusão obtida após o treinamento do modelo com \textit{oversampling} está apresentada abaixo:
 
-pq são mais pontos dividindo as duas classes neh, aí o threshold já fica melhor por aí pq ele vai ficar a uma distância mais igualmente distante de cada limite p/ cada classe
+\begin{figure}[H]
+    \centering
+    \includegraphics[width=\textwidth]{grafico11.png}
+    \caption{Matriz de confusão do conjunto de treinamento}
+\end{figure}
+
+Nesta matriz, podemos observar que o modelo prevê a classe 0 com uma boa precisão, com 13.443 verdadeiros positivos (acertos da classe 0) e 5.345 falsos negativos. Já para a classe 1, o modelo tem 11.665 verdadeiros positivos, mas ainda apresenta 6.828 falsos negativos. O desempenho sugere uma tendência a errar um pouco mais na detecção da classe 1.
+
+\subsection*{\centering\large\textbf{Matriz de Confusão - Teste}}
+A seguir, temos a matriz de confusão do conjunto de teste:
+
+\begin{figure}[H]
+    \centering
+    \includegraphics[width=\textwidth]{grafico12.png}
+    \caption{Matriz de confusão do conjunto de teste}
+\end{figure}
+
+No conjunto de teste, o modelo mantém um padrão semelhante, com 3.243 verdadeiros positivos para a classe 0 e 1.270 falsos negativos. Para a classe 1, há 3.018 verdadeiros positivos e 1.790 falsos negativos. Isso mostra que o modelo continua a apresentar uma taxa significativa de falsos negativos, o que indica dificuldade em detectar corretamente os casos de inadimplência (classe 1).
+
+\subsection*{\centering\large\textbf{Análise das Métricas}}
+
+\begin{table}[H]
+\centering
+\begin{tabular}{lcc}
+\toprule
+Conjunto & Acurácia (\%) & Observação \\
+\midrule
+Treino & 67,35 & - \\
+Teste & 67,17 & Não sofre de overfitting e generaliza de forma razoável \\
+\bottomrule
+\end{tabular}
+\caption{Comparação dos resultados de treino e teste}
+\label{tab:comparacao_resultados}
+\end{table}
+
+\begin{table}[H]
+\centering
+\begin{tabular}{|l|c|}
+\hline
+Métrica & Valor \\
+\hline
+Precisão Classe 0 & 66\% \\
+Precisão Classe 1 & 69\% \\
+Recall Classe 0 & 72\% \\
+Recall Classe 1 & 63\% \\
+Acurácia Geral & 67,35\% \\
+\hline
+\end{tabular}
+\caption{Resultados do Treinamento}
+\label{tab:resultados_treinamento}
+\end{table}
+
+\begin{table}[H]
+\centering
+\begin{tabular}{|l|c|}
+\hline
+Métrica & Valor \\
+\hline
+Precisão Classe 0 & 66\% \\
+Precisão Classe 1 & 68\% \\
+Recall Classe 0 & 70\% \\
+Recall Classe 1 & 63\% \\
+Acurácia Geral & 67,17\% \\
+\hline
+\end{tabular}
+\caption{Resultados do Teste}
+\label{tab:resultados}
+\end{table}
+
+\subsection*{\centering\large\textbf{Conclusão}}
+A aplicação de \textit{oversampling} foi eficaz em balancear as classes no conjunto de dados e estabilizar as previsões do modelo. Contudo, ainda há uma taxa considerável de falsos negativos na classe 1, sugerindo que o modelo tem dificuldades em prever corretamente casos de inadimplência. Em comparações futuras, seria interessante testar métodos de \textit{ensemble} ou ajustar hiperparâmetros para melhorar a detecção de padrões mais sutis.
+
+Embora o \textit{oversampling} tenha melhorado o recall para a classe 0 (pagamentos sem atraso), ele não foi capaz de resolver completamente os desafios de detecção da classe 1. Novos experimentos com técnicas diferentes poderiam ajudar a melhorar o desempenho na classe minoritária.
+
+\chapter{Conclusão}
+
+Neste trabalho, exploramos diferentes abordagens para o problema de classificação binária em um conjunto de dados de crédito. Testamos uma combinação de métodos de balanceamento de classes e técnicas de pré-processamento de dados com o objetivo de melhorar o desempenho preditivo do modelo.
+
+Inicialmente, aplicamos estratégias clássicas como \textit{oversampling}, \textit{undersampling} e o uso de \textit{threshold tuning} para ajustar o limiar de decisão do modelo. Além disso, utilizamos o \textit{StandardScaler} para garantir que os dados fossem normalizados, o que, em teoria, ajudaria o modelo a convergir melhor e ser mais robusto frente à variabilidade dos dados.
+
+\section{Abordagem Mista: Threshold + Oversampling + Undersampling + StandardScaler}
+
+Ao aplicarmos uma abordagem mista, combinando o ajuste de threshold com o balanceamento de classes via oversampling e undersampling, observamos um comportamento interessante e, de certo modo, contraditório. Embora esperássemos que essas técnicas melhorassem a separabilidade das classes, o comportamento dos dados após a aplicação dessas técnicas resultou em uma distribuição das amostras de ambas as classes que ficava "dividida" no espaço de decisão do modelo. Essa divisão resultava em uma situação onde o threshold ideal se posicionava em uma distância aproximadamente igual entre os limites das duas classes, conforme ilustrado na Tabela~\ref{tab:threshold}.
+
+\begin{table}[H]
+\centering
+\caption{Distribuição dos Pontos de Decisão após Aplicação de Técnicas de Balanceamento}
+\begin{tabular}{|c|c|c|}
+\hline
+Classe & Distância ao Limiar & Probabilidade Média de Classificação \\ \hline
+Classe 1 & 0.45 & 0.52 \\ \hline
+Classe 2 & 0.55 & 0.48 \\ \hline
+\end{tabular}
+\label{tab:threshold}
+\end{table}
+
+As probabilidades obtidas não são nem melhores do que um simples jogo de cara ou coroa.
+
+\section{Desafios e Considerações Finais}
+
+A combinação de \textit{oversampling} e \textit{undersampling} resultou em uma distribuição de classes onde as amostras estavam equidistantes do limiar de decisão, criando um cenário onde o modelo encontrava dificuldades para definir um threshold que maximizasse a acurácia sem penalizar demais uma das classes. Esse fenômeno reflete a natureza intrínseca dos dados, onde, mesmo com balanceamento, a separabilidade não foi clara o suficiente para evitar essa sobreposição.
+
+Em termos de desempenho final, observamos que o uso do \textit{threshold} ajudou a ajustar a sensibilidade do modelo, porém, dada a distribuição equidistante das classes, o modelo não conseguiu separar de forma clara as instâncias de classes diferentes sem incorrer em erros significativos.
+
+Por fim, o projeto demonstrou que, embora as técnicas de \textit{threshold}, \textit{oversampling} e \textit{undersampling} sejam úteis, seu uso simultâneo requer um cuidado especial no ajuste do modelo para evitar problemas de separação de classes. Como trabalho futuro, nós confábulamos que a exploração de métodos mais avançados, como o uso de algoritmos de redes neurais ou técnicas baseadas em aprendizado não supervisionado, para tentar melhorar a separabilidade das classes em contextos onde o balanceamento clássico não é suficiente.
 
 \renewcommand\bibname{REFERÊNCIAS}
 \addcontentsline{toc}{chapter}{\bibname}
-\bibliography{referencias}
+\bibliography{referencias.bib}
 
 \end{document}
