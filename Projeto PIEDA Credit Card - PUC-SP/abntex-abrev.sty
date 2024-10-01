@@ -1,0 +1,23 @@
+\NeedsTeXFormat{LaTeX2e}
+\input{cvs-id.def}
+\CVSExtract$Id: abntex-abrev.sty,v 1.3 2003/10/13 09:41:21 gweber Exp $
+\CVSPackage{abntexabrev}{\space Abreviacoes}
+\RequirePackage{ifthen}
+\newcommand{\NoAbrevending}{\let\Abrevending\@empty}
+\input{nbr10522-1988.def}
+\newcommand{\@NBR}{@NBR@A@}
+\newcommand{\@PREF@}[1]{\csname \@NBR#1\endcsname}
+\input{abntex-abrev-pt_BR.def}
+\ProcessOptions
+\newcommand{\@TR@}{@TR@}
+\newcommand{\Capitalize}[1]{\uppercase{#1}}
+\newcommand{\TESTabrev}[1]{%
+\@ifundefined{@TR@#1}{pt(#1):\csname \@NBR#1\endcsname}{en(#1):\csname \@TR@#1\endcsname}}
+\newcommand{\abrevending}{.}
+\newcommand{\Abrevending}{}
+\newcommand{\abrev}[1]{\let\Abrevending\abrevending%
+\@ifundefined{@TR@#1}{\csname \@NBR#1\endcsname\Abrevending}{\csname \@TR@#1\endcsname\Abrevending}}
+\newcommand{\Abrev}[1]{\expandafter\Capitalize\abrev{#1}}
+\newcommand{\ABNTEXabrev}[1]{\@ifundefined{@TR@#1}{#1}{\csname \@TR@#1\endcsname}}
+\newcommand{\ABNTEXabrevp}[1]{\let\Abrevending\abrevending
+\ABNTEXabrev{#1}\Abrevending}
